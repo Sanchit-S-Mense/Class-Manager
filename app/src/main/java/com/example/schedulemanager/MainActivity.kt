@@ -14,6 +14,8 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import android.view.Menu
 import android.view.MenuItem
 import com.example.schedulemanager.databinding.ActivityMainBinding
+import android.widget.ImageView
+import androidx.appcompat.app.AlertDialog
 
 class MainActivity : AppCompatActivity() {
 
@@ -41,12 +43,24 @@ class MainActivity : AppCompatActivity() {
         appBarConfiguration = AppBarConfiguration(navController.graph)
         setupActionBarWithNavController(navController, appBarConfiguration)
 
-        binding.fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null)
-                .setAnchorView(R.id.fab).show()
+        binding.fab.setOnClickListener {
+            val imageView = ImageView(this).apply {
+                setImageResource(R.drawable.ic_timetable) // Replace with your image drawable
+                setPadding(32, 32, 32, 32)
+            }
+            AlertDialog.Builder(this)
+                .setTitle("Photo Preview")
+                .setView(imageView)
+                .setPositiveButton("Close") { dialog, _ -> dialog.dismiss() }
+                .show()
         }
     }
+//        binding.fab.setOnClickListener { view ->
+//            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                .setAction("Action", null)
+//                .setAnchorView(R.id.fab).show()
+//        }
+//    }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
